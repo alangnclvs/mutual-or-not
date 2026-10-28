@@ -11,23 +11,111 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Mutual" />
     <meta name="referrer" content="no-referrer" />
-    <link rel="icon" type="image/png" href="/icons/icon-192.png" />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
 
     <section id="home" hidden>
-      <div class="wrap home-wrap">
+      <div class="wrap home-wrap" id="home-wrap">
         <div class="home-top">
           <span></span>
-          <button type="button" class="text-btn" id="open-settings" data-t="settings"></button>
+          <button type="button" class="text-btn" data-open-settings data-t="settings"></button>
         </div>
         <h1 class="hero" id="hero" aria-label="Mutual or not"><span>Mutual</span><span class="or">or</span><span>not</span></h1>
         <p class="tagline" data-t="tagline"></p>
+        <details class="how">
+          <summary data-t="how"></summary>
+          <ol id="how-steps"></ol>
+          <p class="how-tip"><span class="mark" aria-hidden="true">*</span><span id="how-tip"></span></p>
+        </details>
+        <div class="upload">
+          <div class="saved" id="saved" hidden>
+            <p class="eyebrow" data-t="saved"></p>
+            <ul class="tally" id="saved-list"></ul>
+          </div>
+          <p class="notice" id="notice" role="alert" hidden></p>
+          <button type="button" class="play" id="choose" data-t="chooseFile"></button>
+          <input id="file" type="file" accept=".zip,.json,application/zip,application/json" multiple hidden />
+          <p class="upload-note" data-t="uploadNote"></p>
+        </div>
         <p class="version mono muted" id="version"></p>
       </div>
     </section>
+
+    <section id="summary" hidden>
+      <div class="bar">
+        <div class="wrap">
+          <button type="button" class="text-btn back" data-go="home"><span aria-hidden="true">&larr;</span><span data-t="home"></span></button>
+          <span class="spacer"></span>
+          <button type="button" class="text-btn" data-open-settings data-t="settings"></button>
+        </div>
+      </div>
+      <div class="wrap sum-wrap" id="summary-body"></div>
+    </section>
+
+    <section id="list" hidden>
+      <div class="bar">
+        <div class="wrap">
+          <button type="button" class="text-btn back" data-go="summary"><span aria-hidden="true">&larr;</span><span data-t="summary"></span></button>
+          <span class="spacer"></span>
+          <span class="mono bar-title" id="list-bar-title"></span>
+        </div>
+      </div>
+      <div class="wrap list-wrap">
+        <div class="list-head">
+          <p class="eyebrow" id="list-eyebrow"></p>
+          <h1 class="screen-title" id="list-title"></h1>
+          <p class="list-rule" id="list-rule" hidden></p>
+        </div>
+        <div class="field">
+          <label for="search" data-t="search"></label>
+          <input id="search" type="search" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="@" />
+        </div>
+        <ul class="people" id="people"></ul>
+      </div>
+    </section>
+
+    <div class="sheet" id="owner-sheet" role="dialog" aria-modal="true" aria-labelledby="owner-question" hidden>
+      <form class="wrap" id="owner-form">
+        <p class="confirm-text" id="owner-question" data-t="ownerQuestion"></p>
+        <div class="field">
+          <label for="owner" data-t="ownerLabel"></label>
+          <input id="owner" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="@" required />
+        </div>
+        <p class="notice" id="owner-error" data-t="ownerInvalid" hidden></p>
+        <button type="submit" class="play" data-t="continue"></button>
+        <button type="button" class="text-btn" id="owner-cancel" data-t="cancel"></button>
+      </form>
+    </div>
+
+    <div class="overlay settings" id="settings" role="dialog" aria-modal="true" aria-labelledby="settings-title" hidden>
+      <div class="wrap">
+        <h2 class="screen-title" id="settings-title" data-t="settings"></h2>
+        <div class="set-row">
+          <span data-t="language"></span>
+          <div class="seg">
+            <button type="button" data-language="pt">Português</button>
+            <button type="button" data-language="en">English</button>
+          </div>
+        </div>
+        <div class="set-row">
+          <span data-t="theme"></span>
+          <div class="seg">
+            <button type="button" data-theme-set="system"></button>
+            <button type="button" data-theme-set="light"></button>
+            <button type="button" data-theme-set="dark"></button>
+          </div>
+        </div>
+        <div class="set-row">
+          <button type="button" class="text-btn danger" id="delete-data" data-t="deleteData"></button>
+          <p class="notice muted" id="deleted" data-t="deleted" role="status" hidden></p>
+        </div>
+        <button type="button" class="play" id="settings-close" data-t="close"></button>
+        <p class="version mono muted" id="settings-version"></p>
+      </div>
+    </div>
 
     <script type="module" src="/src/main.ts"></script>
   </body>
