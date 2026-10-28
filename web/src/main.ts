@@ -11,6 +11,8 @@ import { type Analysis, analyse, type ListKey, lists, type Row } from "./analysi
 import { readUsername } from "./export_parser";
 import { type ExportData, readExport, type UploadedFile } from "./export_reader";
 import { thumbnail } from "./photo";
+import { sequenceRows } from "./sequence";
+import { playSequence } from "./sequence_view";
 import {
   deleteAll,
   detectLanguage,
@@ -191,6 +193,19 @@ async function finish(data: ExportData, owner: string): Promise<void> {
   if (!saveAnalysis(storage, result.analysis)) app.notes.push(t().notices.full);
   if (source && !photo) app.notes.push(t().notices.photo);
   app.current = result.analysis;
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    syncThemeColor("#0d0d0d");
+    await playSequence(
+      sequenceRows(result.analysis),
+      lists(result.analysis).notFollowingBack.length,
+      {
+        caption: t().analysing(owner),
+        label: t().lists.notFollowingBack,
+        follows: t().follows,
+        doesNotFollow: t().doesNotFollow,
+      },
+    );
+  }
   renderSummary();
   show("summary");
 }
