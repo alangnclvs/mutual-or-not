@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Mutual or Not</title>
+    <meta name="description" content="Quem segue de volta no Instagram, lido no próprio aparelho." />
+    <meta name="theme-color" content="#f5f2ea" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Mutual" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="icon" type="image/png" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <section id="home" hidden>
+      <div class="wrap home-wrap">
+        <div class="home-top">
+          <span></span>
+          <button type="button" class="text-btn" id="open-settings" data-t="settings"></button>
+        </div>
+        <h1 class="hero" id="hero" aria-label="Mutual or not"><span>Mutual</span><span class="or">or</span><span>not</span></h1>
+        <p class="tagline" data-t="tagline"></p>
+        <p class="version mono muted" id="version"></p>
+      </div>
+    </section>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
