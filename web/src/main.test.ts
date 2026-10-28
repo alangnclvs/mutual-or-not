@@ -46,7 +46,20 @@ const first = {
   likedPosts: [like("ana", Date.UTC(2026, 9, 1) / 1000)],
 };
 
+/** Whether the page sees `prefers-reduced-motion: reduce`; most tests skip the sequence. */
+let reducedMotion = true;
+
 beforeAll(async () => {
+  window.matchMedia = ((query: string) => ({
+    matches: query.includes("reduce") && reducedMotion,
+    media: query,
+    onchange: null,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    addListener: () => {},
+    removeListener: () => {},
+    dispatchEvent: () => false,
+  })) as typeof window.matchMedia;
   localStorage.clear();
   document.documentElement.innerHTML = html.replace(/<script[^>]*><\/script>/, "");
   await import("./main");
@@ -76,6 +89,8 @@ describe("the page", () => {
   it("reads a ZIP into the summary", async () => {
     choose(zipFile("instagram-conta.exemplo-2026-10-28-abc.zip", exportZip(first)));
     await until(() => visible("#summary"));
+    // Under reduced motion the summary opens at once, with no sequence.
+    expect(document.querySelector(".seq")).toBeNull();
     expect(visible("#notice")).toBe(false);
     expect($("#poster-count").textContent).toBe("2");
     const figures = [...document.querySelectorAll("#summary-body .figure .fn")].map(
@@ -110,8 +125,15 @@ describe("the page", () => {
 
   it("shows who unfollowed and who started following on the next export", async () => {
     const next = { ...first, followers: [follower("ana", 1), follower("eva", 8)] };
+    reducedMotion = false;
     choose(zipFile("instagram-conta.exemplo-2026-11-28-abc.zip", exportZip(next)));
+    // The sequence plays over home; a tap skips it to the summary.
+    await until(() => document.querySelector(".seq") !== null);
+    expect(document.querySelector(".seq-cap")?.textContent).toBe("Analysing @conta.exemplo");
+    (document.querySelector(".seq") as HTMLElement).click();
+    reducedMotion = true;
     await until(() => visible("#summary"));
+    await until(() => document.querySelector(".seq") === null);
     const body = $("#summary-body").textContent ?? "";
     expect(body).toContain("−2");
     expect(body).toContain("+1");

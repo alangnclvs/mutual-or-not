@@ -711,6 +711,180 @@ button.figure:active {
   }
 }
 
+/* ---------- the sequence (docs/design.md, Sequence) ----------
+   Ink, cream and the dark theme's red in both themes, like the pack's openers: a poster, not a
+   screen. Sizes in cqw of a stage at most 56% of the screen's height wide, so a tablet keeps the
+   phone's shape. */
+.seq {
+  --sq-ink: #0d0d0d;
+  --sq-cream: #f5f2ea;
+  --sq-muted: #5f5a50;
+  --sq-red: #ff4e38;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  background: var(--sq-ink);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.seq.red {
+  background: var(--sq-red);
+}
+.seq-stage {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: min(100%, 56svh);
+  margin-inline: auto;
+  container-type: size;
+}
+.seq-layer {
+  position: absolute;
+  inset: 0;
+}
+.seq-cap {
+  position: absolute;
+  left: 7cqw;
+  top: calc(9cqw + env(safe-area-inset-top, 0px));
+  z-index: 3;
+  font-family: var(--f-mono);
+  font-weight: 600;
+  font-size: 3.2cqw;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sq-cream);
+  opacity: 0;
+}
+.seq-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 30cqh;
+  z-index: 1;
+  background: linear-gradient(var(--sq-ink) 35%, transparent);
+}
+.seq-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 58cqh;
+  border-top: 0.4cqw solid var(--sq-red);
+  opacity: 0.9;
+}
+.seq-ledger {
+  position: absolute;
+  left: 7cqw;
+  right: 7cqw;
+  top: 58cqh;
+}
+.seq-row {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 6.4cqw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3cqw;
+  font-family: var(--f-mono);
+  font-weight: 700;
+  font-size: 4cqw;
+  color: var(--sq-cream);
+}
+.seq-name {
+  position: relative;
+  min-width: 0;
+  white-space: nowrap;
+}
+.seq-st {
+  font-size: 2.8cqw;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sq-muted);
+}
+.seq-st.no {
+  color: var(--sq-red);
+}
+.seq-strike {
+  position: absolute;
+  left: -4%;
+  top: 0;
+  width: 108%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.seq-strike path {
+  fill: none;
+  stroke: var(--sq-red);
+  stroke-width: 3.4px;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+}
+.seq-tally {
+  position: absolute;
+  left: 6cqw;
+  bottom: calc(8cqw + env(safe-area-inset-bottom, 0px));
+  z-index: 2;
+  font-family: var(--f-display);
+  font-size: 30cqw;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  color: transparent;
+  -webkit-text-stroke: 0.5cqw var(--sq-red);
+  font-variant-numeric: tabular-nums;
+}
+.seq-slam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-55%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3cqw;
+  color: var(--sq-ink);
+  opacity: 0;
+}
+.seq-num {
+  display: block;
+  width: max-content;
+  font-family: var(--f-display);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  transform-origin: center;
+  font-variant-numeric: tabular-nums;
+}
+.seq-lab {
+  font-family: var(--f-mono);
+  font-weight: 700;
+  font-size: 4.2cqw;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+/* The wipe to the summary: the app's own background, led by a band of the accent. */
+.seq-wipe,
+.seq-wipe-accent {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+}
+.seq-wipe {
+  background: var(--bg);
+}
+.seq-wipe-accent {
+  background: var(--accent);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
