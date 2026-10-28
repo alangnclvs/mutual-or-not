@@ -1,0 +1,29 @@
+# Backlog
+
+## Roadmap
+
+Each step is one branch cut from `develop`, merged back into it and then into `main` (production). A step is done when its criterion holds. Steps keep their numbers as ids; the list is in execution order. Finished steps get "Built on <date>" and "Learned" notes. Alan's parts are grouped at the end (steps 7 to 9), at his request: everything before them is done for him.
+
+- [ ] **0. Foundation docs** (`docs/foundation`): CLAUDE.md, README, design, ADRs 0001 to 0003, this file. Done when Alan has read and approved them.
+  - Written on 2026-10-28 from the brainstorm and the prototype (https://claude.ai/artifact/25Ge3P2J4hYtkK5rZboqhX). Alan approved writing them and asked for the build to go on; his read is in step 9.
+- [ ] **1. Scaffold** (`chore/scaffold`): `web/` with Houdini's configs (Vite, TypeScript strict, Biome, Vitest with happy-dom, `vite-plugin-pwa`), the fonts from `@fontsource`, `style.css` with the pack's tokens, `strings.ts` in pt and en, home with the hero title, `web/vercel.json` with the CSP, placeholder icons, CI. Done when `npm test` and `npm run build` pass in CI and the built home makes no request outside its origin.
+- [ ] **2. Export reading** (`feat/export`): `export_reader.ts` (ZIP or loose JSON, files found by name, owner and date from the ZIP's name or the fallbacks, the errors of `docs/design.md`) and `export_parser.ts` (followers, following, interactions with the owner block in English, Portuguese and by structure, comments, profile best effort). Done when every rule of Reading the export has a test on synthetic fixtures, including one in Portuguese labels.
+- [ ] **3. Analysis** (`feat/analysis`): `analysis.ts` (the six lists, the window, the threshold, the activity state, changes against the stored analysis, an older export refused) and `storage.ts` (analyses per owner, settings, delete all). Done when every rule of Lists has a test.
+- [ ] **4. Screens** (`feat/screens`): home (steps, stored analyses, CHOOSE FILE, drop, notices), summary (Cartaz), list (search, links), settings (language, theme, delete), the owner question for loose JSON, pt and en, screen transitions. Done when a smoke test uploads a synthetic export through the page and reads the summary's counts, and the screens match the prototype at 390 px in both themes.
+- [ ] **5. Sequence** (`feat/sequence`): "Lista corrida" as in `docs/design.md` (Sequence), tap to skip, nothing under reduced motion. Done when it plays after an upload and a test covers the reduced-motion path.
+- [ ] **6. Icon** (`design/icon`): `icon.svg` from the prototype's icon 2 and the four PWA sizes drawn from it. Done when the manifest's icons are the struck equals sign.
+- [ ] **7. Deploy** (Alan, with Claude): a Vercel project on `alangnclvs/mutual-or-not` with root `web/`; the domain `mutual-or-not.alangoncalves.com` added in Vercel and its CNAME at Squarespace. Done when the address opens on the phone over HTTPS with the CSP header, and the app installs on the home screen.
+- [ ] **8. Check on the phone** (Alan): a new export with *Personal information* ticked, read on the phone; the profile card's keys confirmed against it (Claude reads its shape, as with the first export); Mariana's export, if she agrees, to check the Portuguese labels. Done when Alan's summary shows his photo, name and counts, and the lists match what Instagram shows.
+- [ ] **9. Release v1**: Alan reads the docs (step 0), `develop` reaches `main` with steps 1 to 8 checked; the app version becomes `1.0.0` and `main` is tagged `v1.0.0`.
+
+**v1 ends when step 9 is done and Alan says so.**
+
+## Ideas, no step
+
+- Pending follow requests and recently unfollowed profiles (both in the export): left out of v1 on 2026-10-28.
+- DMs as interactions: left out on 2026-10-28; the export names DM participants by display name, which does not match usernames reliably.
+
+## Open questions, settled during the roadmap
+
+- The keys of `personal_information.json` and where the profile photo sits in the ZIP: settled in step 8, from Alan's next export.
+- Whether the Portuguese labels match the parser's list: the structural fallback covers them; Mariana's export in step 8 confirms.
