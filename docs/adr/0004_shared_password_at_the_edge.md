@@ -22,7 +22,7 @@ The app is for Alan and Mariana only, but its address is public: anyone who find
 
 ## Decision
 
-Option 3. `web/middleware.ts` runs before any file is served and calls `refusal` in `web/src/access.ts`: the right password passes, whatever the user name; a missing or wrong one gets a 401 that makes the browser ask. The password is `APP_PASSWORD` in the Vercel project, never in the repo; with none set, everyone is refused. The manifest and the icons stay open, since Chrome fetches them for the install without the password.
+Option 3. `web/middleware.ts` runs before any file is served, in one file with no relative import (Vercel runs it as an ES module in Node): the right password passes, whatever the user name; a missing or wrong one gets a 401 that makes the browser ask. The password is `APP_PASSWORD` in the Vercel project, never in the repo; with none set, everyone is refused. The manifest and the icons stay open, since Chrome fetches them for the install without the password.
 
 - Option 1 protects the production domain only on paid plans.
 - Option 2 ships the check, and the app, to anyone who asks for it; the lock would be a few lines to skip.
