@@ -1,6 +1,6 @@
 # Mutual or Not
 
-A web app for Alan and Mariana that reads an Instagram export on the device and shows who follows back, who does not, and who the owner barely interacts with. Nothing leaves the device: no backend, no login, no telemetry (ADR 0001). Not a game, but it shares the visual identity, stack and conventions of the pack (`../houdini-solitaire`, `../ego-death-sudoku`, `../twenty-one-clues`).
+A web app for Alan and Mariana that reads an Instagram export on the device and shows who follows back, who does not, and who the owner barely interacts with. Nothing leaves the device: no backend, no account, no telemetry (ADR 0001); a shared password at the edge keeps others out (ADR 0004). Not a game, but it shares the visual identity, stack and conventions of the pack (`../houdini-solitaire`, `../ego-death-sudoku`, `../twenty-one-clues`).
 
 ## Read before working
 
