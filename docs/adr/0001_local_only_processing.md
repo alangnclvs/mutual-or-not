@@ -1,6 +1,6 @@
 # 0001. The export is read on the device and nothing leaves it
 
-- Status: Accepted
+- Status: Accepted; who may open the app is locked by a shared password since ADR 0004
 - Date: 2026-10-28
 
 ## Context

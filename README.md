@@ -1,6 +1,6 @@
 # Mutual or Not
 
-See who follows you back on Instagram, who doesn't, and who you barely interact with. Private: it runs in the browser, with no login, and nothing leaves your device.
+See who follows you back on Instagram, who doesn't, and who you barely interact with. Private: it runs in the browser, with no account, and nothing leaves your device. Only Alan and Mariana have the password.
 
 Status: building. It will run at **mutual-or-not.alangoncalves.com** (Portuguese and English).
 
