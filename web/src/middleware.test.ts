@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
-import { refusal } from "./access";
+import { afterEach, describe, expect, it } from "vitest";
+import middleware, { refusal } from "../middleware";
 
 function requestWith(credentials?: string, scheme = "Basic"): Request {
   const headers = new Headers();
@@ -44,5 +44,21 @@ describe("refusal", () => {
   it("refuses everyone when no password is set", () => {
     expect(refusal(requestWith("alan:"), undefined)?.status).toBe(401);
     expect(refusal(requestWith("alan:"), "")?.status).toBe(401);
+  });
+});
+
+describe("middleware", () => {
+  afterEach(() => {
+    delete process.env.APP_PASSWORD;
+  });
+
+  it("passes the request on with the password of APP_PASSWORD", () => {
+    process.env.APP_PASSWORD = "segredo";
+    expect(middleware(requestWith("alan:segredo")).headers.get("x-middleware-next")).toBe("1");
+  });
+
+  it("answers 401 without it", () => {
+    process.env.APP_PASSWORD = "segredo";
+    expect(middleware(requestWith()).status).toBe(401);
   });
 });
