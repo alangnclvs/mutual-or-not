@@ -24,6 +24,7 @@
     "@fontsource/archivo": "^5.2.5",
     "@fontsource/archivo-black": "^5.2.5",
     "@fontsource/jetbrains-mono": "^5.2.5",
+    "@vercel/functions": "3.10.0",
     "fflate": "^0.8.2"
   }
 }

@@ -2,7 +2,7 @@
 
 What the app is. The reasons behind the choices that are hard to undo live in `docs/adr/`.
 
-A small web app for Alan and Mariana that reads the export Instagram gives of an account ("Download your information") and shows who follows back, who does not, and who the owner barely interacts with. Everything runs in the browser: the export is read on the device and nothing leaves it (ADR 0001). No login, no backend, no ML or LLM. Visual identity shared with the games of the pack (Twenty One Clues, Ego Death Sudoku, Houdini Solitaire).
+A small web app for Alan and Mariana that reads the export Instagram gives of an account ("Download your information") and shows who follows back, who does not, and who the owner barely interacts with. Everything runs in the browser: the export is read on the device and nothing leaves it (ADR 0001). No account and no backend, only a shared password checked before the app is served (ADR 0004). No ML or LLM. Visual identity shared with the games of the pack (Twenty One Clues, Ego Death Sudoku, Houdini Solitaire).
 
 ## Glossary
 
@@ -129,5 +129,6 @@ Language, theme, and the analyses. Every read and write is wrapped so the app st
 
 - **App:** TypeScript (strict) with Vite, no framework (ADR 0002). Biome, Vitest with happy-dom. PWA via `vite-plugin-pwa`: the app shell and the fonts are precached, so it opens offline. `fflate` reads the ZIP in the browser, unpacking only the files named in Reading the export. UI strings in a pt/en dictionary.
 - **Privacy:** a Content Security Policy in `web/vercel.json` limits every request to the app's own origin (ADR 0001).
+- **Access:** `web/middleware.ts` (Vercel Routing Middleware) asks for one password through the browser's own box (HTTP Basic) before serving any file but the manifest and the icons; the rule is `refusal` in `web/src/access.ts`, the password the Vercel environment variable `APP_PASSWORD`; with none set, everyone is refused (ADR 0004).
 - **Hosting:** Vercel, project root `web/`, `main` to production, other branches to preview; `mutual-or-not.alangoncalves.com` through a CNAME at Squarespace (ADR 0003).
 - **CI:** GitHub Actions on pull requests and on pushes to `main` and `develop`: Biome, Vitest, tsc and the build.
