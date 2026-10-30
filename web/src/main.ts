@@ -10,6 +10,8 @@ import { version } from "../package.json";
 import { type Analysis, analyse, type ListKey, lists, type Row } from "./analysis";
 import { readUsername } from "./export_parser";
 import { type ExportData, readExport, type UploadedFile } from "./export_reader";
+import { openerFor } from "./opener";
+import { playOpener } from "./opener_view";
 import { thumbnail } from "./photo";
 import { sequenceRows } from "./sequence";
 import { playSequence } from "./sequence_view";
@@ -79,15 +81,28 @@ function show(screen: Screen): void {
     void node.offsetWidth;
     node.classList.add(DEPTH[screen] >= DEPTH[shown] ? "enter-forward" : "enter-back");
   }
-  if (screen === "home") {
-    const hero = $("#hero");
-    hero.classList.remove("rise");
-    void hero.offsetWidth;
-    hero.classList.add("rise");
-  }
+  if (screen === "home") raiseTitle();
   shown = screen;
   syncThemeColor();
   window.scrollTo?.(0, 0);
+}
+
+/** The title rises line by line when home opens. */
+function raiseTitle(): void {
+  const hero = $("#hero");
+  hero.classList.remove("rise");
+  void hero.offsetWidth;
+  hero.classList.add("rise");
+}
+
+/** Every opening plays the opener over home, then the title rises. */
+function openApp(): void {
+  if (openerFor(matchMedia("(prefers-reduced-motion: reduce)").matches) === "none") return;
+  syncThemeColor("#0d0d0d");
+  void playOpener().then(() => {
+    syncThemeColor();
+    raiseTitle();
+  });
 }
 
 function render(): void {
@@ -452,3 +467,4 @@ applyTheme();
 applyTexts();
 renderHome();
 show("home");
+openApp();

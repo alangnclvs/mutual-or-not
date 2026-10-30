@@ -73,6 +73,10 @@ describe("the page", () => {
     expect(visible("#saved")).toBe(false);
   });
 
+  it("plays no opener on a device that asks for less motion", () => {
+    expect(document.querySelector("#opener")).toBeNull();
+  });
+
   it("loads nothing from another origin", () => {
     // Only the SVG namespace may name a URL in the page and its styles (ADR 0001).
     const urls = `${html}\n${css}`.match(/https?:\/\/[^\s"')]+/g) ?? [];

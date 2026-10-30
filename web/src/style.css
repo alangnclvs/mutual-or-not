@@ -711,6 +711,125 @@ button.figure:active {
   }
 }
 
+/* ---------- the opener (docs/design.md, Opener) ----------
+   Ink, cream and the dark theme's red in both themes, as the sequence: the app's poster, not a
+   screen. Sizes in cqw of a stage at most 56% of the screen's height wide. */
+.opener {
+  --op-ink: #0d0d0d;
+  --op-cream: #f5f2ea;
+  --op-red: #ff4e38;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  background: var(--op-ink);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.opener.red {
+  background: var(--op-red);
+}
+.op-stage {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: min(100%, 56svh);
+  margin-inline: auto;
+  container-type: size;
+}
+.op-grid {
+  position: absolute;
+  inset: 0;
+}
+.op-sign {
+  position: absolute;
+  width: 12cqw;
+  height: 12cqw;
+  opacity: 0;
+}
+.op-sign.hot {
+  z-index: 10;
+  background: var(--op-red);
+}
+.op-bar {
+  position: absolute;
+  left: 1.5cqw;
+  right: 1.5cqw;
+  top: 3.4cqw;
+  height: 2.2cqw;
+  background: var(--op-cream);
+}
+.op-bar + .op-bar {
+  top: 6.4cqw;
+}
+.op-sign.hot .op-bar {
+  background: var(--op-ink);
+}
+.op-strikes {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.op-strikes path {
+  fill: none;
+  stroke: var(--op-red);
+  stroke-width: 1.45;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+}
+.op-cap {
+  position: absolute;
+  left: 7cqw;
+  top: calc(9cqw + env(safe-area-inset-top, 0px));
+  font-family: var(--f-mono);
+  font-weight: 600;
+  font-size: 3.2cqw;
+  letter-spacing: 0.14em;
+  color: var(--op-cream);
+  opacity: 0;
+}
+.op-slam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--f-display);
+  line-height: 0.84;
+  color: var(--op-ink);
+  opacity: 0;
+}
+.op-word {
+  display: block;
+  width: max-content;
+  white-space: nowrap;
+  letter-spacing: -0.038em;
+  transform-origin: center;
+}
+/* The wipe to home: home's own background, led by a band of the accent. */
+.op-wipe,
+.op-wipe-accent {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+}
+.op-wipe {
+  background: var(--bg);
+}
+.op-wipe-accent {
+  background: var(--accent);
+}
+
 /* ---------- the sequence (docs/design.md, Sequence) ----------
    Ink, cream and the dark theme's red in both themes, like the pack's openers: a poster, not a
    screen. Sizes in cqw of a stage at most 56% of the screen's height wide, so a tablet keeps the
