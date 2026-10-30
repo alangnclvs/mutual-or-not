@@ -70,7 +70,6 @@ interface View {
   signs: Sign[];
   hero: Sign;
   lit: number;
-  caption: HTMLElement;
   slam: HTMLElement;
   title: HTMLElement[];
   fitted: boolean;
@@ -139,7 +138,6 @@ function build(): View {
   });
   grid.style.transformOrigin = "50cqw 50cqh";
 
-  const caption = el("span", "op-cap", stage, "= OR ≠");
   const slam = el("div", "op-slam", stage);
   const title = ["MUTUAL", "OR", "NOT"].map((word) => el("span", "op-word", slam, word));
   return {
@@ -149,7 +147,6 @@ function build(): View {
     signs,
     hero,
     lit: at + 40,
-    caption,
     slam,
     title,
     fitted: false,
@@ -173,7 +170,6 @@ function render(view: View, t: number): void {
   const red = t >= RED_AT;
   view.root.classList.toggle("red", red);
   view.grid.style.visibility = red ? "hidden" : "visible";
-  view.caption.style.opacity = String(red ? 0 : 0.6 * seg(t, 0, 240));
 
   let jolt = 0;
   let punch = 0;
