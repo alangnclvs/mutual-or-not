@@ -102,9 +102,9 @@ Same identity as the pack: the tokens, fonts, grain and motion of `../twenty-one
 
 ### Opener
 
-The pack's opening (see `../twenty-one-clues/docs/design.md`, Opener): on ink, a mono caption in the corner and cream outlines; the risco strikes them, faster and faster, until one is left; it turns red and grows until the screen is red; the title slams in ink; a diagonal wipe of home's background, led by an accent band, opens home, and the title rises line by line. "Iguais", picked by Alan on 2026-10-30 among three versions (the equals signs, the pairs, the orbit; prototype https://claude.ai/artifact/7aHJio5jyfLy4BwBRBu3Bg).
+The pack's opening (see `../twenty-one-clues/docs/design.md`, Opener): on ink, cream outlines; the risco strikes them, faster and faster, until one is left; it turns red and grows until the screen is red; the title slams in ink; a diagonal wipe of home's background, led by an accent band, opens home, and the title rises line by line. No caption in the corner: removed at Alan's request on 2026-10-30. "Iguais", picked by Alan on 2026-10-30 among three versions (the equals signs, the pairs, the orbit; prototype https://claude.ai/artifact/7aHJio5jyfLy4BwBRBu3Bg).
 
-- Here: "= OR ≠" as the caption; a 5 by 5 grid of cream equals signs, the icon's, building from the middle outward; the red risco strikes them bottom-left to top-right in a shuffled order, faster and faster, each one turning into "≠", until the middle one is left: it turns red and grows until the screen is red, and MUTUAL / OR / NOT slams in. About 3.2 s to home.
+- Here: a 5 by 5 grid of cream equals signs, the icon's, building from the middle outward; the red risco strikes them bottom-left to top-right in a shuffled order, faster and faster, each one turning into "≠", until the middle one is left: it turns red and grows until the screen is red, and MUTUAL / OR / NOT slams in. About 3.2 s to home.
 - The opener plays on every opening of the app, then the title rises. A tap skips to home. Under `prefers-reduced-motion`, neither plays. The sequence after an upload stays as it is.
 - Ink, cream and the dark theme's red in both themes, as the sequence; the status bar turns ink while it plays. Never translated, as in the games.
 

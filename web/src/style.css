@@ -784,17 +784,6 @@ button.figure:active {
   stroke-dashoffset: 1;
   opacity: 0;
 }
-.op-cap {
-  position: absolute;
-  left: 7cqw;
-  top: calc(9cqw + env(safe-area-inset-top, 0px));
-  font-family: var(--f-mono);
-  font-weight: 600;
-  font-size: 3.2cqw;
-  letter-spacing: 0.14em;
-  color: var(--op-cream);
-  opacity: 0;
-}
 .op-slam {
   position: absolute;
   left: 0;
